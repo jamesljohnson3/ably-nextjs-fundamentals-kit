@@ -7,6 +7,7 @@ import Logger, { LogEntry } from '../../components/logger';
 import SampleHeader from '../../components/SampleHeader';
 import ReactDOM from "react-dom/client";
 import Spaces from "@ably/spaces";
+import App from "./space";
 
 
 
@@ -19,6 +20,7 @@ export default function PubSubClient() {
     <AblyProvider client={ client }>
       <div className="flex flex-row justify-center">
         <div className="flex flex-col justify-start items-start gap-10">
+        <App spaces={spaces} />
           <SampleHeader sampleName="Pub/Sub Channels" sampleIcon="PubSubChannels.svg" sampleDocsLink="https://ably.com/docs/getting-started/react#useChannel" />
           <div className="font-manrope text-base max-w-screen-sm text-slate-800 text-opacity-100 leading-6 font-light">
             Publish messages on channels and subscribe to channels to receive messages. Click&nbsp;<span className="font-medium">Publish from Client</span>&nbsp;to publish a message on a channel from the web browser client. Click&nbsp;<span className="font-medium">Publish from Server</span>&nbsp;to publish a message from a serverless function.
