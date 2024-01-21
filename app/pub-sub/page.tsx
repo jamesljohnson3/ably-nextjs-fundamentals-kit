@@ -6,6 +6,7 @@ import React from "react";
 import "../global.css";
 import dynamic from 'next/dynamic';
 import Sidebar from "../../components/Sidebar.tsx";
+import Spaces from "@ably/spaces";
 
 const PubSubClient = dynamic(() => import('./pubsub-client.tsx'), {
   ssr: false,

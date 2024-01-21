@@ -5,21 +5,18 @@ import { AblyProvider, useChannel } from "ably/react"
 import { MouseEventHandler, MouseEvent, useState } from 'react'
 import Logger, { LogEntry } from '../../components/logger';
 import SampleHeader from '../../components/SampleHeader';
+import ReactDOM from "react-dom/client";
 import Spaces from "@ably/spaces";
-import { SpaceProvider, SpacesProvider } from "@ably/spaces/react";
-import AvatarStack from "../../components/AvatarStack";
 
-const spaceName = "now";
 
-export default function PubSubClient({ spaces }: { spaces: Spaces }) {
+
+export default function PubSubClient() {
 
   const client = new Ably.Realtime.Promise ({ authUrl: '/token', authMethod: 'POST' });
+  const spaces = new Spaces(client);
 
   return (
     <AblyProvider client={ client }>
-       <SpacesProvider client={spaces}>
-    <SpaceProvider name={spaceName}>
-      <AvatarStack />
       <div className="flex flex-row justify-center">
         <div className="flex flex-col justify-start items-start gap-10">
           <SampleHeader sampleName="Pub/Sub Channels" sampleIcon="PubSubChannels.svg" sampleDocsLink="https://ably.com/docs/getting-started/react#useChannel" />
@@ -29,8 +26,6 @@ export default function PubSubClient({ spaces }: { spaces: Spaces }) {
           <PubSubMessages />
         </div>      
       </div>
-    </SpaceProvider>
-  </SpacesProvider>
     </AblyProvider>
   )
 }
